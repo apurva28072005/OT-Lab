@@ -1,0 +1,51 @@
+import sympy as sp
+
+# Define variables
+x,y=sp.symbols('x,y')
+
+# Define function
+f = x**2 + y**2 - 4*x - 6*y + 13
+
+print("Function:")
+print(f)
+
+# First partial derivatives
+fx = sp.diff(f, x)
+fy = sp.diff(f, y)
+
+print("\nPartial Derivative wrt x:")
+print(fx)
+
+print("\nPartial Derivative wrt y:")
+print(fy)
+
+# Stationary point
+critical_point = sp.solve((fx, fy), (x, y))
+
+print("\nStationary Point:")
+print(critical_point)
+
+# Second partial derivatives
+fxx = sp.diff(fx, x)
+fyy = sp.diff(fy, y)
+fxy = sp.diff(fx, y)
+
+# Hessian determinant
+D = fxx*fyy - fxy**2
+
+print("\nSecond Partial Derivatives:")
+print("fxx =", fxx)
+print("fyy =", fyy)
+print("fxy =", fxy)
+
+print("\nHessian Determinant D =", D)
+
+# Classification
+if D > 0 and fxx > 0:
+  print("\nThe stationary point is a Local Minimum.")
+elif D > 0 and fxx < 0:
+  print("\nThe stationary point is a Local Maximum.")
+elif D < 0:
+  print("\nThe stationary point is a Saddle Point.")
+else:
+  print("\nTest is Inconclusive.")
