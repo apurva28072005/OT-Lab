@@ -1,0 +1,28 @@
+ import numpy as np
+
+def f(x):
+  return x**4-8*x+8
+
+def df(x):
+  return 4*x-8
+
+def d2f(x):
+  return 4
+
+x = 1
+
+tol = 1e-6
+
+max_iter = 30
+
+print("Iteration\t x")
+
+for i in range(max_iter):
+  x_new = x-df(x)/d2f(x)
+  print(i+1,"\t\t",round(x_new,6))
+  if abs(x_new - x) < tol:
+    break
+  x = x_new
+print("\nOptimal Point =",x_new)
+print("Minimum Function Value =",f(x_new))
+
